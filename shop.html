@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEDRO MORGADO - Shop</title>
+    <meta name="description" content="Pedro Morgado official shop. Buy albums, concert tickets, and more.">
+    <meta name="keywords" content="Pedro Morgado, shop, music, albums, tickets, concerts">
+    <meta name="author" content="Pedro Morgado">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="bg-dark text-white py-3 mb-4 position-relative">
+        <div class="container position-relative">
+            <div class="d-flex justify-content-between align-items-center" style="position:relative;">
+                <div>
+                    <nav class="navbar navbar-dark p-0">
+                        <button class="navbar-toggler ms-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </nav>
+                </div>
+                <h1 class="mb-2 text-center flex-grow-1 text-danger" style="margin-bottom:0!important;">PEDRO MORGADO</h1>
+                <div>
+                    <span class="d-inline-block" style="font-size:1.1rem;" id="user-session-header">
+                        <a href="shop-pt.html" class="lang-link">PT</a> / <a href="shop.html" class="lang-link">EN</a>
+                        <a href="loja/cart.php" class="ms-3" title="View Cart"><i class="fas fa-shopping-cart text-danger" style="font-size:1.3rem;"></i></a>
+                    </span>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse position-absolute" id="mainNavbar" style="top:60px;left:0;z-index:30;background:#222;border-radius:0 0 10px 0;min-width:220px;">
+                <ul class="navbar-nav gap-2 p-3">
+                    <li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="discography.html">DISCOGRAPHY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">GALLERY</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html">VIDEO</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="shop.html">SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacts.html">CONTACTS</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="flex-fill">
+        <div class="container">
+            <h2 class="text-center my-4">Online Shop</h2>
+            </div>
+            <section class="mb-4">
+                <h3 class="text-danger text-center">Filter by Category</h3>
+                <p class="text-center">Select a category to view only products from that category. Click one of the buttons below to quickly filter available products.</p>
+                <div class="d-flex justify-content-center">
+                <ul class="list-group list-group-horizontal flex-wrap justify-content-center mx-auto" style="max-width:900px; width:100%;" aria-label="Product categories">
+                        <li class="list-group-item category-link text-center flex-fill m-2 shadow-sm" data-category="Albums" style="min-width:180px;"><i class="fas fa-compact-disc me-2"></i>Albums</li>
+                        <li class="list-group-item category-link text-center flex-fill m-2 shadow-sm" data-category="Concerts" style="min-width:180px;"><i class="fas fa-music me-2"></i>Concerts</li>
+                        <li class="list-group-item category-link text-center flex-fill m-2 shadow-sm" data-category="Past Events" style="min-width:180px;"><i class="fas fa-tshirt me-2"></i>Past Events</li>
+                    </ul>
+                </div>
+                <style>
+                .category-link {
+                    cursor: pointer;
+                    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+                    font-weight: 500;
+                    border: 2px solid #dc3545;
+                    color: #dc3545;
+                    background: #fff;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 1.08em;
+                    justify-content: center;
+                    box-shadow: 0 2px 8px rgba(220,53,69,0.07);
+                }
+                .category-link.active, .category-link:hover {
+                    background: #dc3545;
+                    color: #fff;
+                    box-shadow: 0 4px 16px rgba(220,53,69,0.15);
+                }
+                .category-link i {
+                    font-size: 1.1em;
+                }
+                @media (max-width: 600px) {
+                    .category-link { min-width: 120px; font-size: 0.98em; }
+                }
+                </style>
+                <script>
+                // Accessibility: focus visible for keyboard navigation
+                document.addEventListener('keydown', function(e) {
+                  if (e.key === 'Tab') {
+                    document.body.classList.add('user-is-tabbing');
+                  }
+                });
+                // Example products per category
+                const productsByCategory = {
+                    'Albums': [
+                        { name: 'Album "Caixa de Surpresas"', price: '€10.00' },
+                        { name: 'Album "Arrustica"', price: '€10.00' },
+                        { name: 'Album "Ecletrica"', price: '€10.00' },
+                        { name: 'Album "Ecletrica II"', price: '€10.00' },
+                        { name: 'Album "HOME"', price: '€10.00' },
+                        { name: 'Album "Retrato"', price: '€10.00' },
+                        { name: 'Album "Prisma"', price: '€10.00' },
+                        { name: 'Album "CLOVER"', price: '€10.00' }
+                    ]
+                    // Concerts and Past Events are loaded dynamically from PHP, not from this array
+                };
+
+                function renderFutureEvents() {
+                    const list = $('#products-list');
+                    list.empty();
+                    $.get('registo/api_eventos.php?filtro=futuros', function(data) {
+                        if (data && Array.isArray(data) && data.length > 0) {
+                            data.forEach(function(ev, idx) {
+                                // Adiciona botões de compra, quantidade e preço igual aos produtos
+                                list.append(`
+                                    <li class="list-group-item">
+                                        <div style="flex:1 1 0;">
+                                            <span class="product-name">${ev.titulo} <span class='text-muted' style='font-size:0.95em;'>(${ev.data})</span></span><br>
+                                            <span class="badge bg-danger" style="font-size:1em;">${ev.local}</span>
+                                        </div>
+                                        <span class="badge bg-danger product-price">€15.00</span>
+                                        <input type="number" min="1" value="1" class="form-control d-inline-block qty-input me-2" data-idx="${idx}" style="width:70px;max-width:90px;">
+                                        <span class="product-actions">
+                                            <button class="btn btn-success btn-sm btn-add-cart" data-idx="${idx}" data-type="concert"><i class="fas fa-cart-plus"></i> Add</button>
+                                            <button class="btn btn-outline-danger btn-sm btn-remove-cart" data-idx="${idx}" data-type="concert"><i class="fas fa-trash"></i></button>
+                                        </span>
+                                    </li>`);
+                            });
+                        } else {
+                            list.append('<li class="list-group-item text-muted" aria-live="polite">No upcoming concerts found.</li>');
+                        }
+                        // Mostra o botão de checkout
+                        $('#products-actions').html('<form id="cart-redirect-form" method="POST" action="loja/cart.php" style="display:inline;" aria-label="Checkout form">\n  <input type="hidden" name="cart_data" id="cart_data_hidden">\n  <button type="submit" class="btn btn-danger" aria-label="Checkout"><i class="fas fa-credit-card"></i> Checkout</button>\n</form>');
+                    }, 'json');
+                }
+
+                function renderPastEvents() {
+                    const list = $('#products-list');
+                    list.empty();
+                    $.get('registo/api_eventos.php?filtro=passados', function(data) {
+                        if (data && Array.isArray(data) && data.length > 0) {
+                            data.forEach(function(ev) {
+                                list.append(`
+                                    <li class="list-group-item">
+                                        <span class="product-name">${ev.titulo} <span class='text-muted' style='font-size:0.95em;'>(${ev.data})</span></span>
+                                        <span class="badge bg-danger">${ev.local}</span>
+                                    </li>`);
+                            });
+                        } else {
+                            list.append('<li class="list-group-item text-muted" aria-live="polite">No past events found.</li>');
+                        }
+                        $('#products-actions').empty();
+                    }, 'json');
+                }
+                function renderProducts(category) {
+                    // Renderiza produtos de uma categoria 
+                    const list = $('#products-list');
+                    list.empty();
+                    if (productsByCategory[category]) {
+                        productsByCategory[category].forEach(function(prod, idx) {
+                            list.append(`
+                                <li class="list-group-item">
+                                    <span class="product-name">${prod.name}</span>
+                                    <span class="badge bg-danger product-price">${prod.price}</span>
+                                    <input type="number" min="1" value="1" class="form-control d-inline-block qty-input me-2" data-idx="${idx}" style="width:70px;max-width:90px;" aria-label="Quantity for ${prod.name}">
+                                    <span class="product-actions">
+                                        <button class="btn btn-success btn-sm btn-add-cart" data-idx="${idx}" aria-label="Add ${prod.name} to cart"><i class="fas fa-cart-plus"></i> Add</button>
+                                        <button class="btn btn-outline-danger btn-sm btn-remove-cart" data-idx="${idx}" aria-label="Remove ${prod.name} from cart"><i class="fas fa-trash"></i></button>
+                                    </span>
+                                </li>`);
+                        });
+                    }
+                    // Botão de checkout 
+                    $('#products-actions').html('<form id="cart-redirect-form" method="POST" action="loja/cart.php" style="display:inline;" aria-label="Checkout form">\n  <input type="hidden" name="cart_data" id="cart_data_hidden">\n  <button type="submit" class="btn btn-danger" aria-label="Checkout"><i class="fas fa-credit-card"></i> Checkout</button>\n</form>');
+                }
+                // Array para seleção do carrinho 
+                let calcSelection = [];
+                // Atualiza o total do carrinho 
+                function updateCartTotal() {
+                    let total = 0;
+                    calcSelection.forEach(item => {
+                        total += item.price * item.qty;
+                    });
+                    // Accessibility: announce cart total
+                    $('#cart-total-summary').html('Total in Cart: <span style="color:#222">€ ' + total.toFixed(2) + '</span>');
+                    $('#cart-total-summary').attr('aria-live', 'polite');
+                }
+                // Inicialização dos eventos de clique nas categorias 
+                $(function() {
+                    // Ao carregar, não mostra nada até clicar numa categoria
+                    $('#products-list').empty();
+                    $('#products-available-section').hide();
+                    $('.category-link').on('click', function() {
+                        $('.category-link').removeClass('active');
+                        $(this).addClass('active');
+                        const cat = $(this).data('category');
+                        $('#products-list').empty();
+                        if (cat === 'Past Events') {
+                            renderPastEvents();
+                        } else if (cat === 'Concerts') {
+                            renderFutureEvents();
+                        } else if (cat === 'Albums') {
+                            renderProducts(cat);
+                        }
+                        $('#products-available-section').show();
+                    });
+                });
+                // Button events with AJAX integration
+                $(document).on('click', '.btn-add-cart', function() {
+                    const idx = $(this).data('idx');
+                    const cat = $('.category-link.active').data('category');
+                    const type = $(this).data('type');
+                    let prod, name, price;
+                    if (cat === 'Concerts' || type === 'concert') {
+                        const evItem = $('#products-list .list-group-item').eq(idx);
+                        name = evItem.find('.product-name').text();
+                        price = 15.00;
+                    } else {
+                        prod = productsByCategory[cat][idx];
+                        name = prod.name;
+                        price = parseFloat(prod.price.replace('€','').replace(',','.'));
+                    }
+                    const qty = Math.max(1, parseInt($(`.qty-input[data-idx='${idx}']`).val()) || 1);
+                    let found = calcSelection.find(item => item.name === name);
+                    if (found) {
+                        found.qty += qty;
+                    } else {
+                        calcSelection.push({ name: name, price: price, qty: qty });
+                    }
+                    updateCartTotal();
+                });
+                $(document).on('click', '.btn-remove-cart', function() {
+                    const idx = $(this).data('idx');
+                    const cat = $('.category-link.active').data('category');
+                    const type = $(this).data('type');
+                    let name;
+                    if (cat === 'Concerts' || type === 'concert') {
+                        const evItem = $('#products-list .list-group-item').eq(idx);
+                        name = evItem.find('.product-name').text();
+                    } else {
+                        const prod = productsByCategory[cat][idx];
+                        name = prod.name;
+                    }
+                    calcSelection = calcSelection.filter(item => item.name !== name);
+                    updateCartTotal();
+                    // Accessibility: focus feedback
+                    alert('Product removed from cart!');
+                });
+                // On form submit, send cart data to PHP
+                $(document).on('submit', '#cart-redirect-form', function(e) {
+                    if (calcSelection.length === 0) {
+                        alert('No products in cart.');
+                        e.preventDefault();
+                        return false;
+                    }
+                    // Atualiza o campo oculto com os produtos selecionados
+                    $('#cart_data_hidden').val(JSON.stringify(calcSelection));
+                });
+
+                // Garante que o campo oculto está sempre atualizado ao clicar no botão de checkout
+                $(document).on('click', '#cart-redirect-form button[type="submit"]', function() {
+                    $('#cart_data_hidden').val(JSON.stringify(calcSelection));
+                });
+                </script>
+            </section>
+            <section class="mb-4" id="products-available-section" style="display:none;">
+                <h3 class="text-danger text-center">Available Products</h3>
+                <p class="text-center">Explore our selection of official Pedro Morgado products. Click a category above to view available products.</p>
+                <div class="products-box mx-auto mb-3" style="max-width:900px; width:100%; background:#fff; border:2px solid #dc3545; border-radius:16px; box-shadow:0 8px 32px rgba(220,53,69,0.18); padding:32px 18px 24px 18px;">
+                    <ul id="products-list" class="list-group mb-3 w-100" style="background:transparent;"></ul>
+                    <div class="text-center mb-2" id="cart-total-summary" style="font-size:1.2em;font-weight:600;color:#dc3545;" aria-live="polite"></div>
+                    <div id="products-actions" class="d-flex gap-2 mb-3 justify-content-center"></div>
+                </div>
+                <style>
+                #products-list .list-group-item {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 16px;
+                    border: none;
+                    background: transparent;
+                    margin-bottom: 0;
+                    box-shadow: none;
+                    border-radius: 0;
+                    width: 100%;
+                    border-bottom: 2px solid #dc3545;
+                    padding: 18px 0 12px 0;
+                }
+                #products-list .list-group-item:last-child {
+                    border-bottom: none;
+                }
+                #products-list .badge {
+                    font-size: 1.1em;
+                    margin-bottom: 0;
+                }
+                #products-list .product-name {
+                    flex: 1 1 0;
+                    text-align: left;
+                    font-weight: 500;
+                }
+                #products-list .product-price {
+                    min-width: 90px;
+                    text-align: center;
+                }
+                #products-list .product-actions {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 8px;
+                    justify-content: flex-end;
+                }
+                #products-list .btn {
+                    min-width: 140px;
+                    margin: 0;
+                    box-shadow: 0 2px 8px rgba(220,53,69,0.18);
+                    transition: box-shadow 0.2s;
+                }
+                #products-list .btn:active, #products-list .btn:focus {
+                    box-shadow: 0 4px 16px rgba(220,53,69,0.25);
+                }
+                .products-box {
+                    box-shadow: 0 8px 32px rgba(220,53,69,0.18) !important;
+                }
+                </style>
+            </section>
+            <section class="mb-4">
+                <h3 class="text-danger">Shopping Cart</h3>
+                <p>After adding products to the cart, you can access it to review or remove items before completing your purchase.</p>
+                <p>To access the cart, use the <i class="fas fa-shopping-cart text-danger"></i> icon at the top of the site.</p>
+            </section>
+        </div>
+    </main>
+    <footer class="bg-dark text-light text-center py-3">
+        <p>© 2025 Pedro Morgado. All rights reserved. Developed by Rita Nunes</p>
+        <div>
+            <a href="https://www.facebook.com/pedro.morgado.9"><i class="fab fa-facebook-f text-danger border border-dark rounded-circle"></i></a>
+            <a href="https://www.instagram.com/_pedro_morgado_/"><i class="fab fa-instagram text-danger border border-dark rounded-circle"></i></a>
+            <a href="https://www.youtube.com/playlist?list=OLAK5uy_llGenPOe9vHI7BsTAKVT3AvjtIyCQd_IE"><i class="fab fa-youtube text-danger border border-dark rounded-circle"></i></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+$(function() {
+    $.get('registo/session_status.php', function(data) {
+        if (data.temSessao) {
+            let html = `
+                <span class="align-middle me-2" title="${data.email}" style="color:#28a745;">
+                    <i class="fas fa-circle" style="font-size:1.1rem;"></i>
+                </span>
+                <span class="fw-bold me-2" style="color:#fff;">${data.nome}</span>
+                <a href="registo/logout.php" title="Logout" class="ms-2"><i class="fas fa-sign-out-alt text-danger" style="font-size:1.3rem;"></i></a>
+            `;
+            $('#user-session-header').prepend(html);
+        } else {
+            let html = `<a href="registo/login.php" title="Login" class="ms-2"><i class="fas fa-sign-in-alt text-danger" style="font-size:1.3rem;"></i></a>`;
+            $('#user-session-header').prepend(html);
+        }
+    }, 'json');
+});
+</script>
+</body>
+</html>

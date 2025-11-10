@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site oficial Pedro Morgado Músico. Informações sobre o músico, compositor, discografia, concertos e contactos.">
+    <meta name="keywords" content="Pedro, Morgado, Pedro Morgado, Guitarrista, compositor, Músico.">
+    <title>Contactos de Pedro Morgado</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    // Função para alternar idioma (mantida para consistência, não usada nesta página)
+    function setLanguage(lang) {
+        if(lang === 'en') {
+            window.location.href = 'index.html';
+        } else {
+            window.location.href = 'index-pt.html';
+        }
+    }
+    </script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="bg-dark text-white py-3 mb-4 position-relative">
+        <div class="container position-relative">
+            <div class="d-flex justify-content-between align-items-center" style="position:relative;">
+                <div>
+                    <nav class="navbar navbar-dark p-0">
+                        <button class="navbar-toggler ms-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </nav>
+                </div>
+                <h1 class="mb-2 text-center flex-grow-1 text-danger" style="margin-bottom:0!important;">PEDRO MORGADO</h1>
+                <div>
+                    <span class="d-inline-block" style="font-size:1.1rem;" id="user-session-header">
+                        <a href="contacts-pt.html" class="lang-link">PT</a> / <a href="contacts.html" class="lang-link">EN</a>
+                    </span>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse position-absolute" id="mainNavbar" style="top:60px;left:0;z-index:30;background:#222;border-radius:0 0 10px 0;min-width:220px;">
+                <ul class="navbar-nav gap-2 p-3">
+                    <li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index-pt.html">INÍCIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="discography-pt.html">DISCOGRAFIA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery-pt.html">GALERIA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video-pt.html">VÍDEO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop-pt.html">LOJA</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contacts-pt.html">CONTACTOS</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="flex-fill d-flex align-items-center justify-content-center" style="min-height:60vh;">
+        <div class="container-fluid">
+            <section class="text-center mb-4">
+                <h2 class="display-6 text-danger mb-3">Entre em contacto</h2>
+                <p>Entre em contacto comigo através de telefone, email, whatsapp ou redes sociais:</p>
+                <div class="d-flex justify-content-center gap-3 mb-3">
+                    <a href="https://wa.me/914303580" class="text-dark"><i class="fa fa-phone fa-2x"></i></a>
+                    <a href="mailto:pmorgado77@gmail.com" class="text-dark"><i class="fa fa-envelope fa-2x"></i></a>
+                    <a href="https://wa.me/914303580" target="_blank" class="text-success"><i class="fab fa-whatsapp fa-2x"></i></a>
+                    <a href="https://www.facebook.com/pedro.morgado.9" target="_blank" class="text-primary"><i class="fab fa-facebook-f fa-2x"></i></a>
+                    <a href="https://www.instagram.com/_pedro_morgado_/" target="_blank" style="color:#C13584"><i class="fab fa-instagram fa-2x"></i></a>
+                </div>
+            </section>
+            
+            <div id="formMessage" class="text-center mt-4">
+                <!-- Mensagem de sucesso após submissão do formulário -->
+                <script>
+                    if (window.location.search.includes('sucesso=1')) {
+                        document.write('<p class="text-success">Formulário enviado com sucesso! Obrigado pelo seu contacto.</p>');
+                    }
+                </script>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <!-- Formulário de contacto PT - envia para processa_contacto.php -->
+                    <form id="contactForm" action="processa_contacto.php" method="post" class="bg-white p-4 rounded shadow-red d-flex flex-column align-items-center" style="max-width:900px;">
+                        <div class="mb-3 w-100">
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" id="nome" name="nome" class="form-control" required>
+                        </div>
+                        <div class="mb-3 w-100">
+                            <label for="apelido" class="form-label">Apelido:</label>
+                            <input type="text" id="apelido" name="apelido" class="form-control" required>
+                        </div>
+                        <div class="mb-3 w-100">
+                            <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
+                            <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" required>
+                        </div>
+                        <div class="mb-3 w-100">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3 w-100">
+                            <label for="telefone" class="form-label">Telefone:</label>
+                            <input type="tel" id="telefone" name="telefone" class="form-control" required>
+                        </div>
+                        <div class="mb-3 w-100">
+                            <label for="mensagem" class="form-label">Mensagem:</label>
+                            <textarea id="mensagem" name="mensagem" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-dark text-light text-center py-3">
+        <p>© 2025 Pedro Morgado. Todos os direitos reservados. Desenvolvido por Rita Nunes</p>
+        <div>
+            <a href="https://www.facebook.com/pedro.morgado.9"><i class="fab fa-facebook-f text-danger border border-dark rounded-circle"></i></a>
+            <a href="https://www.instagram.com/_pedro_morgado_/"><i class="fab fa-instagram text-danger border border-dark rounded-circle"></i></a>
+            <a href="https://www.youtube.com/playlist?list=OLAK5uy_llGenPOe9vHI7BsTAKVT3AvjtIyCQd_IE"><i class="fab fa-youtube text-danger border border-dark rounded-circle"></i></a>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/2b8e1e2e7b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Validação do formulário de contacto no lado do cliente
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            var form = event.target;
+            var isValid = true;
+            
+            // Verificar se o campo Nome está preenchido
+            if (!form.nome.value.trim()) {
+                isValid = false;
+                alert('Por favor, preencha o campo Nome.');
+            }
+            // Verificar se o campo Apelido está preenchido
+            if (!form.apelido.value.trim()) {
+                isValid = false;
+                alert('Por favor, preencha o campo Apelido.');
+            }
+            // Verificar se o campo Data de Nascimento está preenchido
+            if (!form.dataNascimento.value.trim()) {
+                isValid = false;
+                alert('Por favor, preencha o campo Data de Nascimento.');
+            }
+            // Verificar se o campo Email está preenchido
+            if (!form.email.value.trim()) {
+                isValid = false;
+                alert('Por favor, preencha o campo Email.');
+            }
+            // Verificar se o campo Telefone está preenchido
+            if (!form.telefone.value.trim()) {
+                isValid = false;
+                alert('Por favor, preencha o campo Telefone.');
+            }
+            // Verificar se o campo Mensagem está preenchido
+            if (!form.mensagem.value.trim()) {
+                isValid = false;
+                alert('Por favor, preencha o campo Mensagem.');
+            }
+            
+            // Se não for válido, impedir o envio
+            if (!isValid) {
+                event.preventDefault();
+            }
+            // Se válido, o formulário é enviado normalmente para o PHP
+        });
+    </script>
+    <script>
+$(function() {
+    $.get('registo/session_status.php', function(data) {
+        if (data.temSessao) {
+            let html = `
+                <span class="align-middle me-2" title="${data.email}" style="color:#28a745;">
+                    <i class="fas fa-circle" style="font-size:1.1rem;"></i>
+                </span>
+                <span class="fw-bold me-2" style="color:#fff;">${data.nome}</span>
+                <a href="registo/logout.php" title="Terminar Sessão" class="ms-2"><i class="fas fa-sign-out-alt text-danger" style="font-size:1.3rem;"></i></a>
+            `;
+            $('#user-session-header').prepend(html);
+        } else {
+            let html = `<a href="registo/login.php" title="Login" class="ms-2"><i class="fas fa-sign-in-alt text-danger" style="font-size:1.3rem;"></i></a>`;
+            $('#user-session-header').prepend(html);
+        }
+    }, 'json');
+});
+</script>
+</body>
+</html>

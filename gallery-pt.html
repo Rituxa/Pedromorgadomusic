@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEDRO MORGADO - Galeria</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    function setLanguage(lang) {
+        if(lang === 'en') {
+            window.location.href = 'index.html';
+        } else {
+            window.location.href = 'index-pt.html';
+        }
+    }
+    </script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="bg-dark text-white py-3 mb-4 position-relative">
+        <div class="container position-relative">
+            <div class="d-flex justify-content-between align-items-center" style="position:relative;">
+                <div>
+                    <nav class="navbar navbar-dark p-0">
+                        <button class="navbar-toggler ms-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </nav>
+                </div>
+                <h1 class="mb-2 text-center flex-grow-1 text-danger" style="margin-bottom:0!important;">PEDRO MORGADO</h1>
+                <div>
+                    <span class="d-inline-block" style="font-size:1.1rem;" id="user-session-header">
+                        <a href="gallery-pt.html" class="lang-link">PT</a> / <a href="gallery.html" class="lang-link">EN</a>
+                    </span>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse position-absolute" id="mainNavbar" style="top:60px;left:0;z-index:30;background:#222;border-radius:0 0 10px 0;min-width:220px;">
+                <ul class="navbar-nav gap-2 p-3">
+                    <li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index-pt.html">INÍCIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="discography-pt.html">DISCOGRAFIA</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="gallery-pt.html">GALERIA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="video-pt.html">VÍDEOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop-pt.html">LOJA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacts-pt.html">CONTACTOS</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="container my-5">
+        <h2 class="display-5 text-center mb-4">Galeria</h2>
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                <button id="btn-fotos" class="btn btn-outline-danger p-0 border-0 bg-transparent" style="max-width:320px;">
+                    <img src="imagens/fotos/1.jpg" class="img-fluid rounded shadow mb-2" alt="Capa Fotografias" style="width:300px;height:200px;object-fit:cover;">
+                    <span class="fw-bold d-block text-center">Fotografias</span>
+                </button>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center">
+                <button id="btn-albuns" class="btn btn-outline-danger p-0 border-0 bg-transparent" style="max-width:320px;">
+                    <img src="imagens/albuns/1a.jpg" class="img-fluid rounded shadow mb-2" alt="Capa Álbuns" style="width:300px;height:200px;object-fit:cover;">
+                    <span class="fw-bold d-block text-center">Álbuns</span>
+                </button>
+            </div>
+        </div>
+        <!-- Galeria de fotografias (comentário em PT-PT) -->
+        <div id="galeria-fotos" style="display:none;">
+            <h3 class="text-center text-dark mb-3">Fotografias</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                <!-- Cada imagem representa uma fotografia da galeria -->
+                <div class="col"><img src="imagens/fotos/image10.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 2" data-index="0"></div>
+                <div class="col"><img src="imagens/fotos/image11.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 3" data-index="1"></div>
+                <div class="col"><img src="imagens/fotos/image12.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 4" data-index="2"></div>
+                <div class="col"><img src="imagens/fotos/image13.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 6" data-index="4"></div>
+                <div class="col"><img src="imagens/fotos/image14.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 7" data-index="5"></div>
+                <div class="col"><img src="imagens/fotos/image15.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 8" data-index="6"></div>
+                <div class="col"><img src="imagens/fotos/image16.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 9" data-index="7"></div>
+                <div class="col"><img src="imagens/fotos/image17.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 10" data-index="8"></div>
+                <div class="col"><img src="imagens/fotos/image18.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 11" data-index="9"></div>
+                <div class="col"><img src="imagens/fotos/image7.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 14" data-index="12"></div>
+                <div class="col"><img src="imagens/fotos/image8.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 15" data-index="13"></div>
+                <div class="col"><img src="imagens/fotos/image9.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 16" data-index="14"></div>
+                <div class="col"><img src="imagens/fotos/image121.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 5" data-index="3"></div>
+                <div class="col"><img src="imagens/fotos/image19.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 12" data-index="10"></div>
+                <!-- As imagens seguintes têm o mesmo alt e data-index, verificar se são duplicadas -->
+                <div class="col"><img src="imagens/fotos/image24.jpeg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 13" data-index="11"></div>
+                <div class="col"><img src="imagens/fotos/image25.jpeg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 13" data-index="11"></div>
+                <div class="col"><img src="imagens/fotos/image26.jpeg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 13" data-index="11"></div>
+                <div class="col"><img src="imagens/fotos/image20.jpg" class="img-fluid rounded shadow galeria-foto" alt="Fotografia 13" data-index="11"></div>
+                <!-- Fim das imagens de fotografias -->
+            </div>
+        </div>
+        <div id="galeria-albuns" style="display:none;">
+            <h3 class="text-center text-dark mb-3">Álbuns</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                <div class="col"><img src="imagens/albuns/image1.jpg" class="img-fluid rounded shadow galeria-album" alt="Álbum 2" data-index="0"></div>
+                <div class="col"><img src="imagens/albuns/image2.jpg" class="img-fluid rounded shadow galeria-album" alt="Álbum 3" data-index="1"></div>
+                <div class="col"><img src="imagens/albuns/image3.jpg" class="img-fluid rounded shadow galeria-album" alt="Álbum 4" data-index="2"></div>
+                <div class="col"><img src="imagens/albuns/image4.jpg" class="img-fluid rounded shadow galeria-album" alt="Álbum 5" data-index="3"></div>
+                <div class="col"><img src="imagens/albuns/image5.jpg" class="img-fluid rounded shadow galeria-album" alt="Álbum 6" data-index="4"></div>
+                <div class="col"><img src="imagens/albuns/image6.jpg" class="img-fluid rounded shadow galeria-album" alt="Álbum 7" data-index="5"></div>
+                <div class="col"><img src="imagens/albuns/image7.jpg" class="img-fluid rounded shadow galeria-album" alt="Álbum 8" data-index="6"></div>
+                <div class="col"><img src="imagens/albuns/image8.jpeg" class="img-fluid rounded shadow galeria-album" alt="Álbum 9" data-index="7"></div>
+            </div>
+        </div>
+        <!-- Modal Carousel -->
+        <div class="modal fade" id="modalCarousel" tabindex="-1" aria-labelledby="modalCarouselLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white">
+              <div class="modal-header border-0">
+                <h5 class="modal-title text-danger" id="modalCarouselLabel">Galeria</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body p-0">
+                <div id="carouselInner" class="carousel slide" data-bs-ride="false">
+                  <div class="carousel-inner"></div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselInner" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-danger rounded-circle" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselInner" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-danger rounded-circle" aria-hidden="true"></span>
+                    <span class="visually-hidden">Seguinte</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+        // Arrays de imagens para as galerias (comentário em PT-PT)
+        const fotos = [
+            'imagens/fotos/image10.jpg',
+            'imagens/fotos/image11.jpg',
+            'imagens/fotos/image12.jpg',
+            'imagens/fotos/image121.jpg',
+            'imagens/fotos/image13.jpg',
+            'imagens/fotos/image14.jpg',
+            'imagens/fotos/image15.jpg',
+            'imagens/fotos/image16.jpg',
+            'imagens/fotos/image17.jpg',
+            'imagens/fotos/image18.jpg',
+            'imagens/fotos/image19.jpg',
+            'imagens/fotos/image20.jpg',
+            'imagens/fotos/image7.jpg',
+            'imagens/fotos/image8.jpg',
+            'imagens/fotos/image9.jpg'
+        ];
+        const albuns = [
+            'imagens/albuns/image1.jpg',
+            'imagens/albuns/image2.jpg',
+            'imagens/albuns/image3.jpg',
+            'imagens/albuns/image4.jpg',
+            'imagens/albuns/image5.jpg',
+            'imagens/albuns/image6.jpg',
+            'imagens/albuns/image7.jpg',
+            'imagens/albuns/image8.jpeg'
+        ];
+        $(function() {
+            // Botão para mostrar galeria de fotografias
+            $('#btn-fotos').on('click', function() {
+                $('#galeria-fotos').show();
+                $('#galeria-albuns').hide();
+            });
+            // Botão para mostrar galeria de álbuns
+            $('#btn-albuns').on('click', function() {
+                $('#galeria-albuns').show();
+                $('#galeria-fotos').hide();
+            });
+            // Clique numa fotografia abre o modal/carrossel
+            $('.galeria-foto').on('click', function() {
+                const idx = $(this).data('index');
+                abrirCarousel(fotos, idx, 'Fotografias');
+            });
+            // Clique num álbum abre o modal/carrossel
+            $('.galeria-album').on('click', function() {
+                const idx = $(this).data('index');
+                abrirCarousel(albuns, idx, 'Álbuns');
+            });
+            // Função para abrir o carrossel modal
+            function abrirCarousel(arr, idx, titulo) {
+                let html = '';
+                for(let i=0;i<arr.length;i++) {
+                    html += `<div class="carousel-item${i==idx?' active':''}">\n        <img src="${arr[i]}" class="d-block w-100" style="max-height:70vh;object-fit:contain;background:#222;" alt="${titulo} ${i+1}">\n    </div>`;
+                }
+                $('#carouselInner .carousel-inner').html(html);
+                $('#modalCarouselLabel').text(titulo);
+                const modal = new bootstrap.Modal(document.getElementById('modalCarousel'));
+                modal.show();
+                // Instância do carrossel do Bootstrap
+                const carousel = bootstrap.Carousel.getOrCreateInstance(document.getElementById('carouselInner'));
+                carousel.to(idx);
+            }
+        });
+        </script>
+    </main>
+    <footer class="bg-dark text-light text-center py-3">
+        <p>© 2025 Pedro Morgado. Todos os direitos reservados. Desenvolvido por Rita Nunes</p>
+        <div>
+            <a href="https://www.facebook.com/pedro.morgado.9"><i class="fab fa-facebook-f text-danger border border-dark rounded-circle"></i></a>
+            <a href="https://www.instagram.com/_pedro_morgado_/"><i class="fab fa-instagram text-danger border border-dark rounded-circle"></i></a>
+            <a href="https://www.youtube.com/playlist?list=OLAK5uy_llGenPOe9vHI7BsTAKVT3AvjtIyCQd_IE"><i class="fab fa-youtube text-danger border border-dark rounded-circle"></i></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+$(function() {
+    $.get('registo/session_status.php', function(data) {
+        if (data.temSessao) {
+            let html = `
+                <span class="align-middle me-2" title="${data.email}" style="color:#28a745;">
+                    <i class="fas fa-circle" style="font-size:1.1rem;"></i>
+                </span>
+                <span class="fw-bold me-2" style="color:#fff;">${data.nome}</span>
+                <a href="registo/logout.php" title="Terminar Sessão" class="ms-2"><i class="fas fa-sign-out-alt text-danger" style="font-size:1.3rem;"></i></a>
+            `;
+            $('#user-session-header').prepend(html);
+        } else {
+            let html = `<a href="registo/login.php" title="Login" class="ms-2"><i class="fas fa-sign-in-alt text-danger" style="font-size:1.3rem;"></i></a>`;
+            $('#user-session-header').prepend(html);
+        }
+    }, 'json');
+});
+</script>
+</body>
+</html>
