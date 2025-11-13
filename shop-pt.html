@@ -130,9 +130,9 @@
                                     </li>`);
                             });
                         } else {
-                            list.append('<li class="list-group-item text-muted" aria-live="polite">Nenhum concerto futuro encontrado.</li>');
+                            list.append('<li class="list-group-item text-muted" aria-live="polite">Brevemente</li>');
                         }
-                        $('#products-actions').html('<form id="cart-redirect-form" method="POST" action="loja/carrinho.php" style="display:inline;" aria-label="Formulário de checkout">\n  <input type="hidden" name="cart_data" id="cart_data_hidden">\n  <button type="submit" class="btn btn-danger" aria-label="Finalizar compra"><i class="fas fa-credit-card"></i> Finalizar Compra</button>\n</form>');
+                        $('#products-actions').empty();
                     }, 'json');
                 }
 
@@ -183,7 +183,7 @@
                             }
                         });
                     }
-                    $('#products-actions').html('<form id="cart-redirect-form" method="POST" action="loja/carrinho.php" style="display:inline;" aria-label="Formulário de checkout">\n  <input type="hidden" name="cart_data" id="cart_data_hidden">\n  <button type="submit" class="btn btn-danger" aria-label="Finalizar compra"><i class="fas fa-credit-card"></i> Finalizar Compra</button>\n</form>');
+                    $('#products-actions').empty();
                 }
 
                 // Evento para botão 'Enviar mensagem' dos álbuns
@@ -341,11 +341,7 @@
                 }
                 </style>
             </section>
-            <section class="mb-4">
-                <h3 class="text-danger">Carrinho de Compras</h3>
-                <p>Após adicionar produtos ao carrinho, pode aceder ao mesmo para rever ou remover itens antes de finalizar a compra.</p>
-                <p>Para aceder ao carrinho, utilize o ícone <i class="fas fa-shopping-cart text-danger"></i> no topo do site.</p>
-            </section>
+
         </div>
     </main>
     <footer class="bg-dark text-light text-center py-3">
