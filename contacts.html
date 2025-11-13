@@ -31,8 +31,8 @@
                 </div>
             </div>
             <div class="collapse navbar-collapse position-absolute" id="mainNavbar" style="top:60px;left:0;z-index:30;background:#222;border-radius:0 0 10px 0;min-width:220px;">
-                <ul class="navbar-nav gap-2 p-3">
-                    <li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>
+                <ul class="navbar-nav gap-2 p-3" id="main-menu">
+                    <!-- O item GESTÃO será inserido dinamicamente -->
                     <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="discography.html">DISCOGRAPHY</a></li>
                     <li class="nav-item"><a class="nav-link" href="gallery.html">GALLERY</a></li>
@@ -49,7 +49,6 @@
                 <h2 class="display-6 text-danger mb-3">Get in Touch</h2>
                 <p>Contact me by phone, email, WhatsApp or social media:</p>
                 <div class="d-flex justify-content-center gap-3 mb-3">
-                    <a href="https://wa.me/914303580" class="text-dark"><i class="fa fa-phone fa-2x"></i></a>
                     <a href="mailto:pmorgado77@gmail.com" class="text-dark"><i class="fa fa-envelope fa-2x"></i></a>
                     <a href="https://wa.me/914303580" target="_blank" class="text-success"><i class="fab fa-whatsapp fa-2x"></i></a>
                     <a href="https://www.facebook.com/pedro.morgado.9" target="_blank" class="text-primary"><i class="fab fa-facebook-f fa-2x"></i></a>
@@ -144,30 +143,6 @@
             // If valid, the form is submitted to PHP
         });
     </script>
-                alert('Please fill in the Last Name field.');
-            }
-            if (!form.birthdate.value.trim()) {
-                isValid = false;
-                alert('Please fill in the Date of Birth field.');
-            }
-            if (!form.email.value.trim()) {
-                isValid = false;
-                alert('Please fill in the Email field.');
-            }
-            if (!form.phone.value.trim()) {
-                isValid = false;
-                alert('Please fill in the Phone field.');
-            }
-            if (!form.message.value.trim()) {
-                isValid = false;
-                alert('Please fill in the Message field.');
-            }
-            if (!isValid) {
-                event.preventDefault();
-            }
-            // If valid, the form is submitted to PHP
-        });
-    </script>
     <script>
 $(function() {
     $.get('registo/session_status.php', function(data) {
@@ -180,11 +155,25 @@ $(function() {
                 <a href="registo/logout.php" title="Logout" class="ms-2"><i class="fas fa-sign-out-alt text-danger" style="font-size:1.3rem;"></i></a>
             `;
             $('#user-session-header').prepend(html);
+            // Só mostra o menu de gestão se for administrador
+            if (data.isAdmin) {
+                $('#main-menu').prepend('<li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>');
+            }
         } else {
             let html = `<a href="registo/login.php" title="Login" class="ms-2"><i class="fas fa-sign-in-alt text-danger" style="font-size:1.3rem;"></i></a>`;
             $('#user-session-header').prepend(html);
         }
     }, 'json');
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mensagem = urlParams.get('mensagem');
+    if(mensagem) {
+        const msgField = document.getElementById('mensagem');
+        if(msgField) msgField.value = decodeURIComponent(mensagem);
+    }
 });
 </script>
 </body>

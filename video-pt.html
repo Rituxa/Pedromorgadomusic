@@ -39,8 +39,8 @@
                 </div>
             </div>
             <div class="collapse navbar-collapse position-absolute" id="mainNavbar" style="top:60px;left:0;z-index:30;background:#222;border-radius:0 0 10px 0;min-width:220px;">
-                <ul class="navbar-nav gap-2 p-3">
-                    <li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>
+                <ul class="navbar-nav gap-2 p-3" id="main-menu">
+                    <!-- O item GESTÃO será inserido dinamicamente -->
                     <li class="nav-item"><a class="nav-link" href="index-pt.html">INÍCIO</a></li>
                     <li class="nav-item"><a class="nav-link" href="discography-pt.html">DISCOGRAFIA</a></li>
                     <li class="nav-item"><a class="nav-link" href="gallery-pt.html">GALERIA</a></li>
@@ -94,6 +94,10 @@
                     <a href="registo/logout.php" title="Terminar Sessão" class="ms-2"><i class="fas fa-sign-out-alt text-danger" style="font-size:1.3rem;"></i></a>
                 `;
                 $('#user-session-header').prepend(html);
+                // Só mostra o menu de gestão se for administrador
+                if (data.isAdmin) {
+                    $('#main-menu').prepend('<li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>');
+                }
             } else {
                 let html = `<a href="registo/login.php" title="Login" class="ms-2"><i class="fas fa-sign-in-alt text-danger" style="font-size:1.3rem;"></i></a>`;
                 $('#user-session-header').prepend(html);

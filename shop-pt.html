@@ -33,8 +33,8 @@
                 </div>
             </div>
             <div class="collapse navbar-collapse position-absolute" id="mainNavbar" style="top:60px;left:0;z-index:30;background:#222;border-radius:0 0 10px 0;min-width:220px;">
-                <ul class="navbar-nav gap-2 p-3">
-                    <li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>
+                <ul class="navbar-nav gap-2 p-3" id="main-menu">
+                    <!-- O item GESTÃO será inserido dinamicamente -->
                     <li class="nav-item"><a class="nav-link" href="index-pt.html">INÍCIO</a></li>
                     <li class="nav-item"><a class="nav-link" href="discography-pt.html">DISCOGRAFIA</a></li>
                     <li class="nav-item"><a class="nav-link" href="gallery-pt.html">GALERIA</a></li>
@@ -162,20 +162,37 @@
                     list.empty();
                     if (productsByCategory[category]) {
                         productsByCategory[category].forEach(function(prod, idx) {
-                            list.append(`
-                                <li class="list-group-item">
-                                    <span class="product-name">${prod.name}</span>
-                                    <span class="badge bg-danger product-price">${prod.price}</span>
-                                    <input type="number" min="1" value="1" class="form-control d-inline-block qty-input me-2" data-idx="${idx}" style="width:70px;max-width:90px;" aria-label="Quantidade para ${prod.name}">
-                                    <span class="product-actions">
-                                        <button class="btn btn-success btn-sm btn-add-cart" data-idx="${idx}" aria-label="Adicionar ${prod.name} ao carrinho"><i class="fas fa-cart-plus"></i> Adicionar</button>
-                                        <button class="btn btn-outline-danger btn-sm btn-remove-cart" data-idx="${idx}" aria-label="Remover ${prod.name} do carrinho"><i class="fas fa-trash"></i></button>
-                                    </span>
-                                </li>`);
+                            if(category === 'Álbuns') {
+                                list.append(`
+                                    <li class="list-group-item">
+                                        <span class="product-name">${prod.name}</span>
+                                        <span class="badge bg-danger product-price">${prod.price}</span>
+                                        <button class="btn btn-primary btn-sm btn-send-message" data-album="${prod.name}" style="min-width:180px;">Enviar mensagem</button>
+                                    </li>`);
+                            } else {
+                                list.append(`
+                                    <li class="list-group-item">
+                                        <span class="product-name">${prod.name}</span>
+                                        <span class="badge bg-danger product-price">${prod.price}</span>
+                                        <input type="number" min="1" value="1" class="form-control d-inline-block qty-input me-2" data-idx="${idx}" style="width:70px;max-width:90px;" aria-label="Quantidade para ${prod.name}">
+                                        <span class="product-actions">
+                                            <button class="btn btn-success btn-sm btn-add-cart" data-idx="${idx}" aria-label="Adicionar ${prod.name} ao carrinho"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                                            <button class="btn btn-outline-danger btn-sm btn-remove-cart" data-idx="${idx}" aria-label="Remover ${prod.name} do carrinho"><i class="fas fa-trash"></i></button>
+                                        </span>
+                                    </li>`);
+                            }
                         });
                     }
                     $('#products-actions').html('<form id="cart-redirect-form" method="POST" action="loja/carrinho.php" style="display:inline;" aria-label="Formulário de checkout">\n  <input type="hidden" name="cart_data" id="cart_data_hidden">\n  <button type="submit" class="btn btn-danger" aria-label="Finalizar compra"><i class="fas fa-credit-card"></i> Finalizar Compra</button>\n</form>');
                 }
+
+                // Evento para botão 'Enviar mensagem' dos álbuns
+                $(document).on('click', '.btn-send-message', function() {
+                    var album = $(this).data('album');
+                    var msg = encodeURIComponent('Pretendo adquirir o álbum ' + album);
+                    window.location.href = 'contacts-pt.html?mensagem=' + msg;
+                });
+
 
                 // Array para seleção do carrinho (comentário em PT-PT)
                 let calcSelection = [];
@@ -352,6 +369,10 @@ $(function() {
                 <a href="registo/logout.php" title="Terminar Sessão" class="ms-2"><i class="fas fa-sign-out-alt text-danger" style="font-size:1.3rem;"></i></a>
             `;
             $('#user-session-header').prepend(html);
+            // Só mostra o menu de gestão se for administrador
+            if (data.isAdmin) {
+                $('#main-menu').prepend('<li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>');
+            }
         } else {
             let html = `<a href="registo/login.php" title="Login" class="ms-2"><i class="fas fa-sign-in-alt text-danger" style="font-size:1.3rem;"></i></a>`;
             $('#user-session-header').prepend(html);

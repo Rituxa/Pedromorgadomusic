@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div class="collapse navbar-collapse position-absolute" id="mainNavbar" style="top:60px;left:0;z-index:30;background:#222;border-radius:0 0 10px 0;min-width:220px;">
-                <ul class="navbar-nav gap-2 p-3">
-                    <li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>
+                <ul class="navbar-nav gap-2 p-3" id="main-menu">
+                    <!-- O item GESTÃO será inserido dinamicamente -->
                     <li class="nav-item"><a class="nav-link" href="index-pt.html">INÍCIO</a></li>
                     <li class="nav-item"><a class="nav-link" href="discography-pt.html">DISCOGRAFIA</a></li>
                     <li class="nav-item"><a class="nav-link" href="gallery-pt.html">GALERIA</a></li>
@@ -59,7 +59,6 @@
                 <h2 class="display-6 text-danger mb-3">Entre em contacto</h2>
                 <p>Entre em contacto comigo através de telefone, email, whatsapp ou redes sociais:</p>
                 <div class="d-flex justify-content-center gap-3 mb-3">
-                    <a href="https://wa.me/914303580" class="text-dark"><i class="fa fa-phone fa-2x"></i></a>
                     <a href="mailto:pmorgado77@gmail.com" class="text-dark"><i class="fa fa-envelope fa-2x"></i></a>
                     <a href="https://wa.me/914303580" target="_blank" class="text-success"><i class="fab fa-whatsapp fa-2x"></i></a>
                     <a href="https://www.facebook.com/pedro.morgado.9" target="_blank" class="text-primary"><i class="fab fa-facebook-f fa-2x"></i></a>
@@ -176,11 +175,25 @@ $(function() {
                 <a href="registo/logout.php" title="Terminar Sessão" class="ms-2"><i class="fas fa-sign-out-alt text-danger" style="font-size:1.3rem;"></i></a>
             `;
             $('#user-session-header').prepend(html);
+            // Só mostra o menu de gestão se for administrador
+            if (data.isAdmin) {
+                $('#main-menu').prepend('<li class="nav-item"><a class="nav-link" href="registo/admin.php">GESTÃO</a></li>');
+            }
         } else {
             let html = `<a href="registo/login.php" title="Login" class="ms-2"><i class="fas fa-sign-in-alt text-danger" style="font-size:1.3rem;"></i></a>`;
             $('#user-session-header').prepend(html);
         }
     }, 'json');
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const mensagem = urlParams.get('mensagem');
+    if(mensagem) {
+        const msgField = document.getElementById('mensagem');
+        if(msgField) msgField.value = decodeURIComponent(mensagem);
+    }
 });
 </script>
 </body>
