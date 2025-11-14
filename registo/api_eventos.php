@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Lisbon');
 // API endpoint para eventos (usado pelas páginas de loja)
 include_once "../base dados/db.php";
 
@@ -41,18 +42,20 @@ if ($filtro === 'futuros') {
 $sql .= " ORDER BY data DESC";
 
 // Preparar e executar query
-$stmt = $pdo->prepare($sql);
-if ($params) {
-    $stmt->execute($params);
-} else {
-    $stmt->execute();
+try {
+    $stmt = $pdo->prepare($sql);
+    if ($params) {
+        $stmt->execute($params);
+    } else {
+        $stmt->execute();
+    }
+    $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($eventos);
+    exit;
+} catch (Exception $e) {
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(["error" => $e->getMessage(), "sql" => $sql, "params" => $params]);
+    exit;
 }
-
-// Buscar eventos da base de dados
-$eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Retorna sempre JSON
-header('Content-Type: application/json; charset=utf-8');
-echo json_encode($eventos);
-exit;
 ?>

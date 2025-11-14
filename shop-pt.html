@@ -112,9 +112,11 @@
                 function renderFutureEvents() {
                     const list = $('#products-list');
                     list.empty();
-                    $.get('registo/api_eventos.php?filtro=futuros', function(data) {
-                        if (data && Array.isArray(data) && data.length > 0) {
-                            data.forEach(function(ev, idx) {
+                    $.getJSON('registo/eventos.json', function(data) {
+                        const hoje = new Date().toISOString().slice(0, 10);
+                        const futuros = data.filter(ev => ev.data >= hoje);
+                        if (futuros.length > 0) {
+                            futuros.forEach(function(ev, idx) {
                                 list.append(`
                                     <li class="list-group-item">
                                         <div style="flex:1 1 0;">
@@ -133,16 +135,20 @@
                             list.append('<li class="list-group-item text-muted" aria-live="polite">Brevemente</li>');
                         }
                         $('#products-actions').empty();
-                    }, 'json');
+                    }).fail(function() {
+                        list.append('<li class="list-group-item text-danger">Erro ao carregar eventos futuros.</li>');
+                    });
                 }
 
                 // Renderiza eventos passados (comentário em PT-PT)
                 function renderPastEvents() {
                     const list = $('#products-list');
                     list.empty();
-                    $.get('registo/api_eventos.php?filtro=passados', function(data) {
-                        if (data && Array.isArray(data) && data.length > 0) {
-                            data.forEach(function(ev) {
+                    $.getJSON('registo/eventos.json', function(data) {
+                        const hoje = new Date().toISOString().slice(0, 10);
+                        const passados = data.filter(ev => ev.data < hoje);
+                        if (passados.length > 0) {
+                            passados.forEach(function(ev) {
                                 list.append(`
                                     <li class="list-group-item">
                                         <span class="product-name">${ev.titulo} <span class='text-muted' style='font-size:0.95em;'>(${ev.data})</span></span>
@@ -150,10 +156,12 @@
                                     </li>`);
                             });
                         } else {
-                            list.append('<li class="list-group-item text-muted" aria-live="polite">Todos os eventos passados.</li>');
+                            list.append('<li class="list-group-item text-muted" aria-live="polite">Nenhum evento passado encontrado.</li>');
                         }
                         $('#products-actions').empty();
-                    }, 'json');
+                    }).fail(function() {
+                        list.append('<li class="list-group-item text-danger">Erro ao carregar eventos passados.</li>');
+                    });
                 }
 
                 // Renderiza produtos de uma categoria (comentário em PT-PT)

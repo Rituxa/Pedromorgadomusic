@@ -111,10 +111,11 @@
                 function renderFutureEvents() {
                     const list = $('#products-list');
                     list.empty();
-                    $.get('registo/api_eventos.php?filtro=futuros', function(data) {
-                        if (data && Array.isArray(data) && data.length > 0) {
-                            data.forEach(function(ev, idx) {
-                                // Adiciona botões de compra, quantidade e preço igual aos produtos
+                    $.getJSON('registo/eventos.json', function(data) {
+                        const hoje = new Date().toISOString().slice(0, 10);
+                        const futuros = data.filter(ev => ev.data >= hoje);
+                        if (futuros.length > 0) {
+                            futuros.forEach(function(ev, idx) {
                                 list.append(`
                                     <li class="list-group-item">
                                         <div style="flex:1 1 0;">
@@ -133,15 +134,19 @@
                             list.append('<li class="list-group-item text-muted" aria-live="polite">Coming soon</li>');
                         }
                         $('#products-actions').empty();
-                    }, 'json');
+                    }).fail(function() {
+                        list.append('<li class="list-group-item text-danger">Error loading future events.</li>');
+                    });
                 }
 
                 function renderPastEvents() {
                     const list = $('#products-list');
                     list.empty();
-                    $.get('registo/api_eventos.php?filtro=passados', function(data) {
-                        if (data && Array.isArray(data) && data.length > 0) {
-                            data.forEach(function(ev) {
+                    $.getJSON('registo/eventos.json', function(data) {
+                        const hoje = new Date().toISOString().slice(0, 10);
+                        const passados = data.filter(ev => ev.data < hoje);
+                        if (passados.length > 0) {
+                            passados.forEach(function(ev) {
                                 list.append(`
                                     <li class="list-group-item">
                                         <span class="product-name">${ev.titulo} <span class='text-muted' style='font-size:0.95em;'>(${ev.data})</span></span>
@@ -149,10 +154,12 @@
                                     </li>`);
                             });
                         } else {
-                            list.append('<li class="list-group-item text-muted" aria-live="polite">All past events.</li>');
+                            list.append('<li class="list-group-item text-muted" aria-live="polite">No past events found.</li>');
                         }
                         $('#products-actions').empty();
-                    }, 'json');
+                    }).fail(function() {
+                        list.append('<li class="list-group-item text-danger">Error loading past events.</li>');
+                    });
                 }
                 function renderProducts(category) {
                     // Renderiza produtos de uma categoria 
